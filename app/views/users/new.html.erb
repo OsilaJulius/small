@@ -3,6 +3,8 @@
 <h1>Signup!</h1>
 
 <%= form_for(@user, url: signup_path) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
   <table>
     <!-- Name -->
     <tr>
