@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Small</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= render 'layouts/default_header' %>
+    <%= render 'layouts/shim' %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1><%= link_to "Small!", root_path %></h1>
+
+      <ul class="links">
+        <li><%= link_to "Sign-in/Sign-up" , '#'%></li>
+      </ul>
+    </header>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <footer>
+      <ul class="links">
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Help", help_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
+
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>
