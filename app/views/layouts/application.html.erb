@@ -10,12 +10,17 @@
     <header>
       <h1><%= link_to "Small!", root_path %></h1>
 
-      <ul class="links">
-        <li><%= link_to "home", root_path %></li>
-        <li><%= link_to "Sign up" , signup_path %></li>
-        <li><%= link_to "Sign in" , '#' %></li>
-      </ul>
+
+      <% if is_signed_in? %>
+        <%= render "layouts/head_links_signed_in" %>
+      <% else %>
+        <%= render "layouts/head_links_reg" %>
+      <% end %>
     </header>
+
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
 
     <div class="container">
       <%= yield %>
@@ -26,6 +31,8 @@
         <li><%= link_to "About", about_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <li><%= link_to "Contact", contact_path %></li>
+      </ul>
+    </footer>
 
     <%= debug(params) if Rails.env.development? %>
   </body>
