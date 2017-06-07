@@ -1,0 +1,28 @@
+<%= provide(:title, 'Comments') %>
+
+<div>
+  <strong><%= link_to @article.user.name, @article.user %>'s article:</strong>
+  <p><%= @article.content %></p>
+  Posted <%= time_ago_in_words(@article.created_at) %> ago.
+</div>
+<div>
+  <% if is_signed_in? %>
+    <%= form_for(@comment) do |f| %>
+      <%= f.hidden_field :commenter, value: current_user.name %>
+      <%= f.hidden_field :article_ref, value: @article.id %>
+      <table>
+        <tr>
+          <td><%= f.text_area :content, placeholder: "Type your comments here." %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit "Post comment" %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <% if @comments.any? %>
+
+  <% end %>
+</div>

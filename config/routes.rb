@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :articles, only: [:create, :show]
+  resources :comments, only: [:edit, :create]
   resources :relationships, only: [:create, :destroy]
 
   # Static pages routes
@@ -23,4 +24,7 @@ Rails.application.routes.draw do
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
 
+  # Comments routes
+  get 'articles/:id/comments', to: 'comments#edit'
+  post 'articles/:id/comments', to: 'comments#create', as: 'comment_create'
 end
