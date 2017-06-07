@@ -1,0 +1,8 @@
+<%= provide(:title, "Users") %>
+
+<h1>Users</h1>
+<% if @users.any? %>
+  <ul>
+    <%= render @users %>
+  </ul>
+<% end %>
