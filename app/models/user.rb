@@ -1,5 +1,11 @@
 class User < ApplicationRecord
+  # Relations
+  has_many :articles, dependent: :destroy
+  
+  # Attribute accessor
   attr_accessor :remember_token
+
+  # Before filter
   before_save :downcase_email
 
   # Validations

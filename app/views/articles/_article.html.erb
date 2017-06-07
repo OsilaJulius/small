@@ -1,0 +1,12 @@
+<li>
+  <span class="user">
+    <%= link_to article.user.name, article.user %><br />
+  </span>
+  <span class="content">
+    <%= article.content %><br />
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(article.created_at) %> ago.
+  </span>
+  <span class="comments"> <%= link_to "Comments", "#" %></span>
+</li>

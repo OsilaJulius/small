@@ -1,3 +1,30 @@
-<%= provide(:title, "") %>
+<% if is_signed_in? %>
+  <%= provide(:title, "home") %>
 
-<h1>Welcome to Small!</h1>
+  <div id="user">
+    <h1><%= @current_user.name %></h1>
+
+    <%= form_for(@article) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.text_area :content, placeholder: "Write your article..." %> </td>
+        </tr>
+
+        <tr>
+          <td><%= f.submit 'Post article' %> </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+
+  <% if @articles.any? %>
+    <ol>
+      <%= render @articles %>
+    </ol>
+
+    <%= will_paginate @articles %>
+  <% end %>
+<% else %>
+  <%= provide(:title, "") %>
+  <h1>Welcome to Small!</h1>
+<% end %>

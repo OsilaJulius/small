@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  #get 'articles/show'
+
   resources :users
+  resources :articles, only:[:create, :show]
 
   # Static pages routes
   root 'static_pages#home'
@@ -18,4 +21,5 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
   delete '/signout', to: 'sessions#destroy'
+
 end
