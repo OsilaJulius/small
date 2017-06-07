@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   #get 'articles/show'
 
   resources :users
-  resources :articles, only:[:create, :show]
+  resources :articles, only: [:create, :show]
+  resources :relationships, only: [:create, :destroy]
 
   # Static pages routes
   root 'static_pages#home'

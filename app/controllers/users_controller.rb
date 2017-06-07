@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :is_signed_in?, only:[:index]
+
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -22,9 +24,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def edit
   end
 
   private
