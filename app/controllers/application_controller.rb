@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def get_article(article_id)
+    session[:article_id] = article_id
+  end
+
+  def current_article
+    @current_article ||= Article.find_by(id: session[:article_id])
+  end
 end

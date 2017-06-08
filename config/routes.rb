@@ -25,6 +25,6 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
 
   # Comments routes
-  get 'articles/:id/comments', to: 'comments#edit'
+  get 'articles/:id/comments', to: 'comments#edit', as: 'comment_new'
   post 'articles/:id/comments', to: 'comments#create', as: 'comment_create'
 end

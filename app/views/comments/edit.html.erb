@@ -1,15 +1,14 @@
 <%= provide(:title, 'Comments') %>
 
 <div>
-  <strong><%= link_to @article.user.name, @article.user %>'s article:</strong>
+  <strong><%= link_to @user.name, @user %>'s article:</strong>
   <p><%= @article.content %></p>
   Posted <%= time_ago_in_words(@article.created_at) %> ago.
-</div>
+</div><br />
 <div>
   <% if is_signed_in? %>
+    <strong>Your comment</strong>
     <%= form_for(@comment) do |f| %>
-      <%= f.hidden_field :commenter, value: current_user.name %>
-      <%= f.hidden_field :article_ref, value: @article.id %>
       <table>
         <tr>
           <td><%= f.text_area :content, placeholder: "Type your comments here." %></td>
@@ -20,9 +19,12 @@
       </table>
     <% end %>
   <% end %>
-</div>
+</div><br />
 <div>
   <% if @comments.any? %>
-
+    <strong>Comments</strong>
+    <ul>
+      <%= render @comments %>
+    </ul>
   <% end %>
-</div>
+<div>
